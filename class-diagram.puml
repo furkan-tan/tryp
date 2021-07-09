@@ -1,0 +1,111 @@
+@startuml
+
+class Rider <<Entity>>{
+    +name:String
+    +surname:String
+    +email:String
+    +phone:Number
+    +profilePicture:String
+    +rating:Number
+    +currentTrip:Trip
+    +bookedTrips:Trip[]
+    +completedTrips:Trip[]
+    +cards:Card[]
+
+    +bookTrip(Trip)
+    +cancelTrip(Trip)
+    +printTripHistory()
+    +printBookedTrips()
+    +printCurrentTrip()
+    
+}
+
+class Driver <<Entity>>{
+    +name:String
+    +surname:String
+    +email:String
+    +phone:Number
+    +profilePicture:String
+    +drivingLicense:String
+    +rating:Number
+    +currentTrip:Trip
+    +upcomingTrips:Trip[]
+    +completedTrips:Trip[]
+    +vehicles:Vehicle[]
+
+    +createTrip(Trip)
+    +editTrip(Trip)
+    +cancelTrip(Trip)
+    +printTripHistory()
+    +printUpcomingTrips()
+    +printCurrentTrip()
+}
+
+interface Vehicle{
+    +brand:String
+    +model:String
+    +year:Number
+    +capacity:Number
+}
+
+class Car <<Value Object>>{
+    
+}
+
+class Motorcycle <<Value Object>>{
+
+}
+
+class Van <<Value Object>>{
+
+}
+
+
+class Trip <<Entity>>{
+    +driver:Driver
+    +riders:Rider[]
+    +createdAt:Date
+    +tripDate:Date
+    +from:String
+    +destination:String
+    +price:Number
+    +status:TripStatus
+}
+
+
+
+enum TripStatus{
+    +AVAILABLE
+    +BOOKED
+    +IN_PROGRESS
+    +FINISHED
+    +CANCELLED
+}
+
+
+
+class Card <<Value Object>>{
+    +name:String
+    +cardNumber:Number
+    +expirationMonth:Number
+    +expirationYear:Number
+    +cvv:Number
+    +type:CardType
+}
+
+enum CardType{
+    +CREDIT_CARD
+    +DEBIT_CARD
+    +GIFT_CARD
+}
+
+Driver "1" *-- "many" Vehicle
+
+Rider "1" *-- "many" Card
+
+
+Car -up-|> Vehicle
+Van -up-|> Vehicle
+Motorcycle -up-|> Vehicle
+
+@enduml
