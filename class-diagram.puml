@@ -1,47 +1,60 @@
-@startuml
+@startuml Tryp
 
-class Rider <<Entity>>{
+class Passenger <<Entity>>{
+    +id:String
     +name:String
     +surname:String
     +email:String
     +phone:Number
     +profilePicture:String
+    +ratingList:Number[]
     +rating:Number
     +currentTrip:Trip
     +bookedTrips:Trip[]
-    +completedTrips:Trip[]
+    +tripHistroy:Trip[]
     +cards:Card[]
 
     +bookTrip(Trip)
     +cancelTrip(Trip)
+    +updateProfilePicture(String)
+    +addCard(Card)
+    +rateDriver(Driver)
     +printTripHistory()
     +printBookedTrips()
     +printCurrentTrip()
-    
+
 }
 
 class Driver <<Entity>>{
+    +id:String
     +name:String
     +surname:String
     +email:String
     +phone:Number
     +profilePicture:String
     +drivingLicense:String
+    +ratingList:Number[]
     +rating:Number
     +currentTrip:Trip
     +upcomingTrips:Trip[]
-    +completedTrips:Trip[]
+    +tripHistory:Trip[]
     +vehicles:Vehicle[]
 
+    +addVehicle(Vehicle)
+    +removeVehicle(Vehicle)
     +createTrip(Trip)
     +editTrip(Trip)
     +cancelTrip(Trip)
+    +ratePassenger(Passenger)
+    +startTrip(Trip)
+    +completeTrip()
     +printTripHistory()
     +printUpcomingTrips()
     +printCurrentTrip()
 }
 
-interface Vehicle{
+class Vehicle <<Value Object>>{
+    +id:String
     +brand:String
     +model:String
     +year:Number
@@ -49,7 +62,7 @@ interface Vehicle{
 }
 
 class Car <<Value Object>>{
-    
+
 }
 
 class Motorcycle <<Value Object>>{
@@ -62,14 +75,18 @@ class Van <<Value Object>>{
 
 
 class Trip <<Entity>>{
+    +id:String
     +driver:Driver
-    +riders:Rider[]
+    +vehicle:Vehicle
+    +passengers:Passenger[]
     +createdAt:Date
     +tripDate:Date
     +from:String
     +destination:String
     +price:Number
     +status:TripStatus
+
+    +print()
 }
 
 
@@ -101,7 +118,7 @@ enum CardType{
 
 Driver "1" *-- "many" Vehicle
 
-Rider "1" *-- "many" Card
+Passenger "1" *-- "many" Card
 
 
 Car -up-|> Vehicle
