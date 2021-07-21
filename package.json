@@ -1,0 +1,28 @@
+{
+  "name": "tryp",
+  "version": "1.0.0",
+  "description": "Car Pool App",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon --ignore '*.json'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furkan-tan/tryp.git"
+  },
+  "author": "Furkan TAN <furkan.tan@icloud.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/furkan-tan/tryp/issues"
+  },
+  "homepage": "https://github.com/furkan-tan/tryp#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}

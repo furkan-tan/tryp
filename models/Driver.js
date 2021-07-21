@@ -1,26 +1,30 @@
 const id = require("uuid");
-const { default: TripStatus } = require("./TripStatus");
+const TripStatus = require("./TripStatus");
+const Car = require("./Car");
+const Van = require("./Van");
+const Motorcycle = require("./Motorcycle");
+const Trip = require("./Trip");
 
 class Driver {
   constructor(name, surname, email, phone, drivingLicense) {
     this.id = id.v4();
-    (this.name = name),
-      (this.surname = surname),
-      (this.email = email),
-      (this.phone = phone),
-      (this.profilePicture =
-        "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg"),
-      (this.drivingLicense = drivingLicense),
-      (this.ratingList = []),
-      (this.rating = 0),
-      (this.currentTrip = null),
-      (this.upcomingTrips = []),
-      (this.tripHistory = []),
-      (this.vehicles = []);
+    this.name = name;
+    this.surname = surname;
+    this.email = email;
+    this.phone = phone;
+    this.profilePicture =
+      "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg";
+    this.drivingLicense = drivingLicense;
+    this.ratingList = [];
+    this.rating = 0;
+    this.currentTrip = null;
+    this.upcomingTrips = [];
+    this.tripHistory = [];
+    this.vehicles = [];
   }
 
   addVehicle(type, brand, model, year) {
-    const vehicle = null;
+    let vehicle = null;
     if (type === "Car") {
       vehicle = new Car(brand, model, year);
     } else if (type === "Van") {

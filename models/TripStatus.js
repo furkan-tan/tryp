@@ -1,9 +1,9 @@
-const TripStatus ={
-    AVAILABLE="available",
-    BOOKED="booked",
-    IN_PROGRESS="in_progress",
-    FINISHED="finished",
-    CANCELLED="cancelled"
+class TripStatus {
+  static AVAILABLE = "available";
+  static BOOKED = "booked";
+  static IN_PROGRESS = "in_progress";
+  static FINISHED = "finished";
+  static CANCELLED = "cancelled";
 }
 
-export default TripStatus
+module.exports = TripStatus;

@@ -1,5 +1,7 @@
-const { default: TripStatus } = require("./TripStatus");
 const id = require("uuid");
+const Card = require("./Card");
+const TripStatus = require("./TripStatus");
+const colors = require("colors");
 
 class Passenger {
   constructor(name, surname, email, phone) {
@@ -35,7 +37,11 @@ class Passenger {
         trip.status = TripStatus.BOOKED;
       }
       console.log(
-        `You booked a trip for ${trip.driver.name}'s drive from ${trip.from} to ${trip.destination}`
+        `You booked a trip for ${colors.magenta(
+          trip.driver.name
+        )}'s drive from ${colors.bgYellow.bold.white(
+          trip.from
+        )} to ${colors.bgBlue.bold.white(trip.destination)}`
       );
     } else if (
       trip.vehicle.capacity === trip.passengers.length ||
