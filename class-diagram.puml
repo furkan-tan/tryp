@@ -7,10 +7,10 @@ class Passenger <<Entity>>{
     +email:String
     +phone:Number
     +profilePicture:String
-    +ratingList:Number[]
+    +ratingHistory:Number[]
     +rating:Number
     +currentTrip:Trip
-    +bookedTrips:Trip[]
+    +upcomingTrips:Trip[]
     +tripHistroy:Trip[]
     +cards:Card[]
 
@@ -20,7 +20,7 @@ class Passenger <<Entity>>{
     +addCard(Card)
     +rateDriver(Driver)
     +printTripHistory()
-    +printBookedTrips()
+    +printUpcomingTrips()
     +printCurrentTrip()
 
 }
@@ -33,7 +33,7 @@ class Driver <<Entity>>{
     +phone:Number
     +profilePicture:String
     +drivingLicense:String
-    +ratingList:Number[]
+    +ratingHistory:Number[]
     +rating:Number
     +currentTrip:Trip
     +upcomingTrips:Trip[]

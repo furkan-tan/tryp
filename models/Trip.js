@@ -1,35 +1,54 @@
-const id = require("uuid");
+const uuid = require("uuid");
 const TripStatus = require("../models/TripStatus");
-const colors = require("colors");
 
 class Trip {
-  constructor(driver, vehicle, tripDate, from, destination, price) {
-    this.id = id.v4();
+  constructor(
+    id = uuid.v4(),
+    driver,
+    vehicle,
+    passengers = [],
+    createdAt = new Date(),
+    tripDate,
+    from,
+    destination,
+    price,
+    status = TripStatus.AVAILABLE
+  ) {
+    this.id = id;
     this.driver = driver;
     this.vehicle = vehicle;
-    this.passengers = [];
-    this.createdAt = new Date();
+    this.passengers = passengers;
+    this.createdAt = createdAt;
     this.tripDate = tripDate;
     this.from = from;
     this.destination = destination;
     this.price = price;
-    this.status = TripStatus.AVAILABLE;
+    this.status = status;
   }
 
-  printTrip() {
-    console.log(
-      `${colors.magenta(
-        this.driver.name
-      )} drives from ${colors.bgYellow.bold.white(
-        this.from
-      )} to ${colors.bgBlue.bold.white(this.destination)}`
-    );
-    console.log(`Passengers for this trip:`);
-    if (!this.passengers.length) {
-      console.log("Nobody have booked this trip yet.".yellow);
-    }
-    this.passengers.forEach((item, index) =>
-      console.log(`${index + 1}-${colors.red(item.name)}`)
+  static create({
+    id,
+    driver,
+    vehicle,
+    passengers,
+    createdAt,
+    tripDate,
+    from,
+    destination,
+    price,
+    status,
+  }) {
+    return new Trip(
+      id,
+      driver,
+      vehicle,
+      passengers,
+      createdAt,
+      tripDate,
+      from,
+      destination,
+      price,
+      status
     );
   }
 }

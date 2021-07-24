@@ -1,23 +1,35 @@
-const id = require("uuid");
+const uuid = require("uuid");
 const Card = require("./Card");
 const TripStatus = require("./TripStatus");
 const colors = require("colors");
 
 class Passenger {
-  constructor(name, surname, email, phone) {
-    this.id = id.v4();
+  constructor(
+    id = uuid.v4(),
+    name,
+    surname,
+    email,
+    phone,
+    profilePicture = "http://adyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",
+    ratingHistory = [],
+    rating = 0,
+    currentTrip = null,
+    upcomingTrips = [],
+    tripHistory = [],
+    cards = []
+  ) {
+    this.id = id;
     this.name = name;
     this.surname = surname;
     this.email = email;
     this.phone = phone;
-    this.profilePicture =
-      "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg";
-    this.ratingList = [];
-    this.rating = 0;
-    this.currentTrip = null;
-    this.bookedTrips = [];
-    this.tripHistory = [];
-    this.cards = [];
+    this.profilePicture = profilePicture;
+    this.ratingHistory = ratingHistory;
+    this.rating = rating;
+    this.currentTrip = currentTrip;
+    this.upcomingTrips = upcomingTrips;
+    this.tripHistory = tripHistory;
+    this.cards = cards;
   }
 
   updateProfilePicture(path) {
@@ -26,20 +38,20 @@ class Passenger {
 
   bookTrip(trip) {
     if (trip.passengers.find((item) => item.id === this.id)) {
-      console.log(`You already booked this trip.`);
+      console.log(`${colors.red(this.name)} already booked this trip.`);
     } else if (
       trip.vehicle.capacity > trip.passengers.length &&
       trip.status === TripStatus.AVAILABLE
     ) {
       trip.passengers.push(this);
-      this.bookedTrips.push(trip);
+      this.upcomingTrips.push(trip);
       if (trip.vehicle.capacity === trip.passengers.length) {
         trip.status = TripStatus.BOOKED;
       }
       console.log(
-        `You booked a trip for ${colors.magenta(
+        `${colors.red(this.name)} booked for ${colors.magenta(
           trip.driver.name
-        )}'s drive from ${colors.bgYellow.bold.white(
+        )}'s trip from ${colors.bgYellow.bold.white(
           trip.from
         )} to ${colors.bgBlue.bold.white(trip.destination)}`
       );
@@ -53,8 +65,12 @@ class Passenger {
     }
   }
   cancelTrip(trip) {
-    this.bookedTrips.filter((item) => item !== trip);
-    trip.passenger.filter((item) => item !== this);
+    const index = this.upcomingTrips.findIndex((o) => o.id === trip.id);
+    this.upcomingTrips.splice(index, 1);
+    const index2 = trip.passengers.findIndex((o) => o.id === this.id);
+    trip.passengers.splice(index2, 1);
+    trip.status = TripStatus.AVAILABLE;
+    trip.vehicle.capacity += 1;
   }
 
   addCard(name, cardNumber, expirationMonth, expirationYear, cvv, type) {
@@ -71,13 +87,43 @@ class Passenger {
 
   rateDriver(trip, driver, rate) {
     if (trip.driver.id === driver.id && trip.status === TripStatus.FINISHED) {
-      if (driver.ratingList.length === 20) {
-        driver.ratingList.pop();
+      if (driver.ratingHistory.length === 20) {
+        driver.ratingHistory.pop();
       }
-      driver.ratingList.push(rate);
+      driver.ratingHistory.push(rate);
     }
     driver.rating =
-      driver.ratingList.reduce((a, b) => a + b, 0) / ratingList.length;
+      driver.ratingHistory.reduce((a, b) => a + b, 0) / ratingHistory.length;
+  }
+
+  static create({
+    id,
+    name,
+    surname,
+    email,
+    phone,
+    profilePicture,
+    ratingHistory,
+    rating,
+    currentTrip,
+    upcomingTrips,
+    tripHistory,
+    cards,
+  }) {
+    return new Passenger(
+      id,
+      name,
+      surname,
+      email,
+      phone,
+      profilePicture,
+      ratingHistory,
+      rating,
+      currentTrip,
+      upcomingTrips,
+      tripHistory,
+      cards
+    );
   }
 }
 

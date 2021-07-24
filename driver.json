@@ -1,0 +1,115 @@
+[[
+  "1"
+],{
+  "id": "2",
+  "name": "3",
+  "surname": "4",
+  "email": "5",
+  "phone": "6",
+  "profilePicture": "7",
+  "drivingLicense": "8",
+  "ratingHistory": "9",
+  "rating": 0,
+  "currentTrip": "10",
+  "upcomingTrips": "11",
+  "tripHistory": "12",
+  "vehicles": "13"
+},"ad0fb374-a7eb-49ff-93b9-0563b118b153","John","Smith","john@gmail.com","123456789","https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg","123123123",[],{
+  "id": "14",
+  "driver": "15",
+  "vehicle": "16",
+  "passengers": "17",
+  "createdAt": "18",
+  "tripDate": "19",
+  "from": "20",
+  "destination": "21",
+  "price": "22",
+  "status": "23"
+},[],[],[
+  "16"
+],"627c29e1-61ef-4de2-a1b9-6e310df6f532",{
+  "id": "2",
+  "name": "3",
+  "surname": "4",
+  "email": "5",
+  "phone": "6",
+  "profilePicture": "7",
+  "drivingLicense": "8",
+  "ratingHistory": "9",
+  "rating": 0,
+  "currentTrip": null,
+  "upcomingTrips": "11",
+  "tripHistory": "12",
+  "vehicles": "13"
+},{
+  "id": "24",
+  "brand": "25",
+  "model": "26",
+  "year": "27",
+  "capacity": 5
+},[
+  "28",
+  "29",
+  "30",
+  "31"
+],"2021-07-24T13:16:21.260Z","2021-08-17T12:00:00.000Z","New York","Miami","100","available","760a66ab-f68d-4cdd-9ba1-2ae29dd63550","Toyota","Camry","2021",{
+  "id": "32",
+  "name": "33",
+  "surname": "34",
+  "email": "35",
+  "phone": "6",
+  "profilePicture": "36",
+  "ratingHistory": "37",
+  "rating": 0,
+  "currentTrip": null,
+  "upcomingTrips": "38",
+  "tripHistory": "39",
+  "cards": "40"
+},{
+  "id": "41",
+  "name": "42",
+  "surname": "34",
+  "email": "35",
+  "phone": "6",
+  "profilePicture": "36",
+  "ratingHistory": "43",
+  "rating": 0,
+  "currentTrip": null,
+  "upcomingTrips": "44",
+  "tripHistory": "45",
+  "cards": "46"
+},{
+  "id": "47",
+  "name": "48",
+  "surname": "34",
+  "email": "35",
+  "phone": "6",
+  "profilePicture": "36",
+  "ratingHistory": "49",
+  "rating": 0,
+  "currentTrip": null,
+  "upcomingTrips": "50",
+  "tripHistory": "51",
+  "cards": "52"
+},{
+  "id": "53",
+  "name": "54",
+  "surname": "34",
+  "email": "35",
+  "phone": "6",
+  "profilePicture": "36",
+  "ratingHistory": "55",
+  "rating": 0,
+  "currentTrip": null,
+  "upcomingTrips": "56",
+  "tripHistory": "57",
+  "cards": "58"
+},"8115ea9b-ebb5-4b32-9ed9-848a14186fae","Fred","Odd","george@gmail.com","http://adyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",[],[
+  "10"
+],[],[],"c95a1afd-acbd-4d30-868b-5bd2b0c4379c","Mikael",[],[
+  "10"
+],[],[],"9ba6e1f6-539b-4546-87aa-1fa7e53ffc72","Dani",[],[
+  "10"
+],[],[],"dd36fe3b-4ab0-44d1-a32b-4ce7d9ea82a6","Dana",[],[
+  "10"
+],[],[]]

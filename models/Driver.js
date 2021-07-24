@@ -1,4 +1,4 @@
-const id = require("uuid");
+const uuid = require("uuid");
 const TripStatus = require("./TripStatus");
 const Car = require("./Car");
 const Van = require("./Van");
@@ -6,21 +6,34 @@ const Motorcycle = require("./Motorcycle");
 const Trip = require("./Trip");
 
 class Driver {
-  constructor(name, surname, email, phone, drivingLicense) {
-    this.id = id.v4();
+  constructor(
+    id = uuid.v4(),
+    name,
+    surname,
+    email,
+    phone,
+    profilePicture = "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",
+    drivingLicense,
+    ratingHistory = [],
+    rating = 0,
+    currentTrip = null,
+    upcomingTrips = [],
+    tripHistory = [],
+    vehicles = []
+  ) {
+    this.id = id;
     this.name = name;
     this.surname = surname;
     this.email = email;
     this.phone = phone;
-    this.profilePicture =
-      "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg";
+    this.profilePicture = profilePicture;
     this.drivingLicense = drivingLicense;
-    this.ratingList = [];
-    this.rating = 0;
-    this.currentTrip = null;
-    this.upcomingTrips = [];
-    this.tripHistory = [];
-    this.vehicles = [];
+    this.ratingHistory = ratingHistory;
+    this.rating = rating;
+    this.currentTrip = currentTrip;
+    this.upcomingTrips = upcomingTrips;
+    this.tripHistory = tripHistory;
+    this.vehicles = vehicles;
   }
 
   addVehicle(type, brand, model, year) {
@@ -40,8 +53,18 @@ class Driver {
   }
 
   createTrip(vehicle, tripDate, from, destination, price) {
-    let trip = new Trip(this, vehicle, tripDate, from, destination, price);
-    trip.status = TripStatus.AVAILABLE;
+    let trip = new Trip(
+      undefined,
+      this,
+      vehicle,
+      [],
+      undefined,
+      tripDate,
+      from,
+      destination,
+      price,
+      undefined
+    );
     this.upcomingTrips.push(trip);
   }
 
@@ -64,13 +87,13 @@ class Driver {
       trip.passengers.find(passenger) &&
       trip.status === TripStatus.FINISHED
     ) {
-      if (passenger.ratingList.length === 20) {
-        passenger.ratingList.pop();
+      if (passenger.ratingHistory.length === 20) {
+        passenger.ratingHistory.pop();
       }
-      passenger.ratingList.push(rate);
+      passenger.ratingHistory.push(rate);
     }
     passenger.rating =
-      passenger.ratingList.reduce((a, b) => a + b, 0) / ratingList.length;
+      passenger.ratingHistory.reduce((a, b) => a + b, 0) / ratingHistory.length;
   }
 
   startTrip(trip) {
@@ -78,12 +101,53 @@ class Driver {
     const index = this.upcomingTrips.findIndex((t) => t.id === trip.id);
     this.currentTrip = this.upcomingTrips[index];
     this.upcomingTrips.splice(index, 1);
+    trip.passengers.forEach((passenger) => {
+      const index = passenger.upcomingTrips.findIndex((t) => t.id === trip.id);
+      passenger.currentTrip = passenger.upcomingTrips[index];
+      passenger.upcomingTrips.splice(index, 1);
+    });
   }
 
   completeTrip() {
     this.currentTrip.status = TripStatus.FINISHED;
+    this.currentTrip.passengers.forEach((passenger) => {
+      passenger.tripHistory.push(passenger.currentTrip);
+      passenger.currentTrip = null;
+    });
     this.tripHistory.push(this.currentTrip);
     this.currentTrip = null;
+  }
+
+  static create({
+    id,
+    name,
+    surname,
+    email,
+    phone,
+    profilePicture,
+    drivingLicense,
+    ratingHistory,
+    rating,
+    currentTrip,
+    upcomingTrips,
+    tripHistory,
+    vehicles,
+  }) {
+    return new Driver(
+      id,
+      name,
+      surname,
+      email,
+      phone,
+      profilePicture,
+      drivingLicense,
+      ratingHistory,
+      rating,
+      currentTrip,
+      upcomingTrips,
+      tripHistory,
+      vehicles
+    );
   }
 }
 
