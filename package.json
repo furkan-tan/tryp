@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/furkan-tan/tryp#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "colors": "^1.4.0",
-    "flatted": "^3.2.1"
+    "express": "^4.17.1",
+    "flatted": "^3.2.1",
+    "pug": "^3.0.2"
   }
 }

@@ -1,0 +1,12 @@
+extends layout
+block content 
+
+    h2 #{driver.name} 's Profile
+    p Upcoming Trips:
+    ol 
+        each trip in driver.upcomingTrips
+            li from #{trip.from} to #{trip.destination} 
+            p Passengers for this trip:
+                ol 
+                    each passenger in trip.passengers
+                        li #{passenger.name}

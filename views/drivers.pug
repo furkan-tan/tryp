@@ -1,0 +1,6 @@
+extends layout 
+block content
+    ol
+        each driver in drivers 
+            li
+                a(href= `/drivers/${driver.id}`)  #{driver.name}

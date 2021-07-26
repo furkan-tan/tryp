@@ -1,0 +1,7 @@
+extends layout 
+block content 
+    p There are #{passengers.length} passengers
+    ol
+        each passenger in passengers 
+            li 
+                a(href=`/passengers/${passenger.id}`) #{passenger.name}

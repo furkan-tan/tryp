@@ -66,6 +66,7 @@ class Driver {
       undefined
     );
     this.upcomingTrips.push(trip);
+    this.upcomingTrips.sort((a.tripDate, b.tripDate), b - a);
   }
 
   editTrip(trip, tripDate, from, destination, price) {

@@ -1,59 +1,55 @@
-const {
-  printUpcomingTrips,
-  printCurrentTrip,
-  printTripHistory,
-} = require("../tryp/lib/print-trips");
-const passengerDatabase = require("./database/passenger-database");
+const express = require("express");
 const driverDatabase = require("./database/driver-database");
-const tripDatabase = require("./database/trip-database");
-//const db = require("./test/db");
+const passengerDatabase = require("./database/passenger-database");
+const Passenger = require("./models/Passenger");
+const bodyParser = require("body-parser");
 
-passengerDatabase.save([
-  passenger,
-  passenger2,
-  passenger3,
-  passenger4,
-  passenger5,
-]);
+const app = express();
 
-driverDatabase.save([driver]);
+app.use(bodyParser.json());
 
-const george = passengerDatabase.findByName("George");
+app.set("view engine", "pug");
 
-printUpcomingTrips(george);
+app.get("/", (req, res) => {
+  //res.send("Hello world");
+  res.render("index");
+});
 
-george.cancelTrip(trip);
+app.get("/passengers", async (req, res) => {
+  const passengers = await passengerDatabase.load();
+  res.render("passengers", { passengers });
+});
 
-passengerDatabase.update(george);
-driverDatabase.update(driver);
+app.get("/passengers/:passengerId", async (req, res) => {
+  const passenger = await passengerDatabase.findBy(
+    "id",
+    req.params.passengerId
+  );
+  res.render("passenger", { passenger });
+});
 
-printUpcomingTrips(george);
+app.post("/passengers", async (req, res) => {
+  const passenger = await passengerDatabase.insert(req.body);
+  res.send(passenger);
+});
 
-//passengerDatabase.insert(passenger5);
+app.post("/passengers/:passengerId/trips");
 
-const p5 = passengerDatabase.findByName("Dana");
+app.delete("/passengers/:passengerId", async (req, res) => {
+  await passengerDatabase.removeByName("id", req.params.passengerId);
+  res.send("OK");
+});
 
-p5.bookTrip(trip);
-passengerDatabase.update(p5);
-driverDatabase.update(driver);
-console.log(passengerDatabase.load());
-const drivers = driverDatabase.load();
+app.get("/drivers", async (req, res) => {
+  const drivers = await driverDatabase.load();
+  res.render("drivers", { drivers });
+});
 
-console.log(drivers);
+app.get("/drivers/:driverId", async (req, res) => {
+  const driver = await driverDatabase.findBy("id", req.params.driverId);
+  res.render("driver", { driver });
+});
 
-drivers.forEach(printUpcomingTrips);
-drivers.forEach(printCurrentTrip);
-drivers.forEach(printTripHistory);
-
-const john = driverDatabase.findByName("John");
-john.startTrip(trip);
-
-driverDatabase.update(john);
-trip.passengers.forEach((passenger) => passengerDatabase.update(passenger));
-
-const passengers = passengerDatabase.load();
-printCurrentTrip(john);
-
-passengers.forEach(printCurrentTrip);
-
-//passengers.forEach(console.log);
+app.listen(3000, () => {
+  console.log("started listening port 3000");
+});

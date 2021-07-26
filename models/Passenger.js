@@ -65,12 +65,23 @@ class Passenger {
     }
   }
   cancelTrip(trip) {
-    const index = this.upcomingTrips.findIndex((o) => o.id === trip.id);
-    this.upcomingTrips.splice(index, 1);
-    const index2 = trip.passengers.findIndex((o) => o.id === this.id);
-    trip.passengers.splice(index2, 1);
-    trip.status = TripStatus.AVAILABLE;
-    trip.vehicle.capacity += 1;
+    if (trip.passengers.findIndex((o) => o.id === this.id) !== -1) {
+      const index = this.upcomingTrips.findIndex((o) => o.id === trip.id);
+      this.upcomingTrips.splice(index, 1);
+      const index2 = trip.passengers.findIndex((o) => o.id === this.id);
+      trip.passengers.splice(index2, 1);
+      trip.status = TripStatus.AVAILABLE;
+      trip.vehicle.capacity += 1;
+      console.log(
+        `${colors.red(this.name)} calcelled booking for ${colors.magenta(
+          trip.driver.name
+        )}'s trip from ${colors.bgYellow.bold.white(
+          trip.from
+        )} to ${colors.bgBlue.bold.white(trip.destination)}`
+      );
+    } else {
+      console.log(`${colors.red(this.name)} is not in this trip`);
+    }
   }
 
   addCard(name, cardNumber, expirationMonth, expirationYear, cvv, type) {
