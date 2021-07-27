@@ -3,216 +3,188 @@
   "2",
   "3",
   "4",
-  "5",
-  "6",
-  "7"
+  "5"
 ],{
-  "id": "8",
-  "name": "9",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "14",
+  "id": "6",
+  "name": "7",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "12",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "15",
-  "tripHistory": "16",
-  "cards": "17"
+  "upcomingTrips": "13",
+  "tripHistory": "14",
+  "cards": "15"
 },{
-  "id": "18",
-  "name": "19",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "20",
+  "id": "16",
+  "name": "17",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "18",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "21",
-  "tripHistory": "22",
-  "cards": "23"
+  "upcomingTrips": "19",
+  "tripHistory": "20",
+  "cards": "21"
 },{
-  "id": "24",
-  "name": "25",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "26",
+  "id": "22",
+  "name": "23",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "24",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "27",
-  "tripHistory": "28",
-  "cards": "29"
+  "upcomingTrips": "25",
+  "tripHistory": "26",
+  "cards": "27"
 },{
-  "id": "30",
-  "name": "31",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "32",
+  "id": "28",
+  "name": "29",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "30",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "33",
-  "tripHistory": "34",
-  "cards": "35"
+  "upcomingTrips": "31",
+  "tripHistory": "32",
+  "cards": "33"
 },{
-  "id": "36",
-  "name": "37",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "38",
+  "id": "34",
+  "name": "35",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "36",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "39",
-  "tripHistory": "40",
-  "cards": "41"
-},{
-  "id": "42",
-  "name": "43",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "44",
-  "rating": 0,
-  "currentTrip": null,
-  "upcomingTrips": "45",
-  "tripHistory": "46",
-  "cards": "47"
-},{
-  "id": "48",
-  "name": "49",
-  "surname": "50",
-  "email": "51",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "52",
-  "rating": 0,
-  "currentTrip": null,
-  "upcomingTrips": "53",
-  "tripHistory": "54",
-  "cards": "55"
-},"c824bad8-9842-46d5-9648-336d2e1ab1ac","George","Odd","george@gmail.com","123456789","http://adyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",[],[],[],[
-  "56"
-],"8de702b9-5875-4338-9787-c000eb0aa1ca","Fred",[],[
-  "57"
-],[],[],"ee993e9d-e7e4-46a5-b804-a443d0026a3a","Mikael",[],[
-  "57"
-],[],[],"ef0c7de1-ef40-4d05-937e-73f8a19647f6","Dani",[],[
-  "57"
-],[],[],"7e6afa4b-2404-4c32-a5ab-f8f64225459c","Dana",[],[],[],[],"657f43d1-b863-43c0-b8d7-f3cd8dc5f0a5","Mike",[],[],[],[],"26f13886-ffed-470f-b2e7-ee55d897c1b8","Hale","Deny","hale@gmail.com",[],[],[],[],{
-  "name": "9",
+  "upcomingTrips": "37",
+  "tripHistory": "38",
+  "cards": "39"
+},"ad669235-3606-4dd8-a2b5-9d7586205151","George","Odd","george@gmail.com","123456789","http://adyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",[],[],[],[
+  "40"
+],"e295c277-7e26-4c7c-91e8-d02d347f9d8b","Fred",[],[
+  "41"
+],[],[],"006fe88f-d512-430f-991a-f9a276ba867b","Mikael",[],[
+  "41"
+],[],[],"fd49495a-3e9d-4c12-8187-2828af107461","Dani",[],[
+  "41"
+],[],[],"5c4d1171-e668-4eac-ba7f-d7de8356a089","Dana",[],[],[],[],{
+  "name": "7",
   "cardNumber": 1234123412341234,
   "expirationMonth": 12,
   "expirationYear": 2022,
   "cvv": 111,
-  "type": "58"
+  "type": "42"
 },{
-  "id": "59",
-  "driver": "60",
-  "vehicle": "61",
-  "passengers": "62",
-  "createdAt": "63",
-  "tripDate": "64",
-  "from": "65",
-  "destination": "66",
-  "price": "67",
-  "status": "68"
-},"Credit_Card","c76d2459-c0e5-4d4b-a226-edb46c545db7",{
-  "id": "69",
-  "name": "70",
-  "surname": "71",
-  "email": "72",
-  "phone": "12",
-  "profilePicture": "73",
-  "drivingLicense": "74",
-  "ratingHistory": "75",
+  "id": "43",
+  "driver": "44",
+  "vehicle": "45",
+  "passengers": "46",
+  "createdAt": "47",
+  "tripDate": "48",
+  "from": "49",
+  "destination": "50",
+  "price": "51",
+  "status": "52"
+},"Credit_Card","b441f8de-68d5-4ade-b8f9-3252b8ad6589",{
+  "id": "53",
+  "name": "54",
+  "surname": "55",
+  "email": "56",
+  "phone": "10",
+  "profilePicture": "57",
+  "drivingLicense": "58",
+  "ratingHistory": "59",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "76",
-  "tripHistory": "77",
-  "vehicles": "78"
+  "upcomingTrips": "60",
+  "tripHistory": "61",
+  "vehicles": "62"
 },{
-  "id": "79",
-  "brand": "80",
-  "model": "81",
-  "year": "82",
-  "capacity": 4
+  "id": "63",
+  "brand": "64",
+  "model": "65",
+  "year": "66",
+  "availableSeat": 0
 },[
-  "83",
-  "84",
-  "85",
-  "86"
-],"2021-07-25T16:28:03.414Z","2021-08-17T12:00:00.000Z","New York","Miami","100","booked","3e9f0a7b-1c70-4364-8b93-92a5435f9b9a","John","Smith","john@gmail.com","https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg","123123123",[],[
-  "57"
+  "67",
+  "68",
+  "69",
+  "70"
+],"2021-07-27T13:46:04.945Z","2021-08-17T12:00:00.000Z","New York","Miami","100","booked","e30f0802-c4f3-4465-a9cb-adebd0507be2","John","Smith","john@gmail.com","https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg","123123123",[],[
+  "41"
 ],[],[
-  "61"
-],"7f56bbb9-85e1-4644-a27b-d06c8e73a2b8","Toyota","Camry","2021",{
-  "id": "8",
-  "name": "9",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "87",
+  "45"
+],"b5594d78-a6e6-4ec2-8e1d-de2e7619fe0c","Toyota","Camry","2021",{
+  "id": "6",
+  "name": "7",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "71",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "88",
-  "tripHistory": "89",
-  "cards": "90"
+  "upcomingTrips": "72",
+  "tripHistory": "73",
+  "cards": "74"
 },{
-  "id": "18",
-  "name": "19",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "20",
+  "id": "16",
+  "name": "17",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "18",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "21",
-  "tripHistory": "22",
-  "cards": "23"
+  "upcomingTrips": "19",
+  "tripHistory": "20",
+  "cards": "21"
 },{
-  "id": "24",
-  "name": "25",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "26",
+  "id": "22",
+  "name": "23",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "24",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "27",
-  "tripHistory": "28",
-  "cards": "29"
+  "upcomingTrips": "25",
+  "tripHistory": "26",
+  "cards": "27"
 },{
-  "id": "30",
-  "name": "31",
-  "surname": "10",
-  "email": "11",
-  "phone": "12",
-  "profilePicture": "13",
-  "ratingHistory": "32",
+  "id": "28",
+  "name": "29",
+  "surname": "8",
+  "email": "9",
+  "phone": "10",
+  "profilePicture": "11",
+  "ratingHistory": "30",
   "rating": 0,
   "currentTrip": null,
-  "upcomingTrips": "33",
-  "tripHistory": "34",
-  "cards": "35"
+  "upcomingTrips": "31",
+  "tripHistory": "32",
+  "cards": "33"
 },[],[
-  "57"
+  "41"
 ],[],[
-  "91"
+  "75"
 ],{
-  "name": "9",
+  "name": "7",
   "cardNumber": 1234123412341234,
   "expirationMonth": 12,
   "expirationYear": 2022,
   "cvv": 111,
-  "type": "58"
+  "type": "42"
 }]

@@ -40,12 +40,13 @@ class Passenger {
     if (trip.passengers.find((item) => item.id === this.id)) {
       console.log(`${colors.red(this.name)} already booked this trip.`);
     } else if (
-      trip.vehicle.capacity > trip.passengers.length &&
+      trip.vehicle.availableSeat > 0 &&
       trip.status === TripStatus.AVAILABLE
     ) {
       trip.passengers.push(this);
       this.upcomingTrips.push(trip);
-      if (trip.vehicle.capacity === trip.passengers.length) {
+      trip.vehicle.availableSeat -= 1;
+      if (trip.vehicle.availableSeat === 0) {
         trip.status = TripStatus.BOOKED;
       }
       console.log(
@@ -56,7 +57,7 @@ class Passenger {
         )} to ${colors.bgBlue.bold.white(trip.destination)}`
       );
     } else if (
-      trip.vehicle.capacity === trip.passengers.length ||
+      trip.vehicle.availableSeat === 0 ||
       trip.status === TripStatus.BOOKED
     ) {
       console.log(`This trip is booked. There is no available seat.`);
@@ -71,7 +72,7 @@ class Passenger {
       const index2 = trip.passengers.findIndex((o) => o.id === this.id);
       trip.passengers.splice(index2, 1);
       trip.status = TripStatus.AVAILABLE;
-      trip.vehicle.capacity += 1;
+      trip.vehicle.availableSeat += 1;
       console.log(
         `${colors.red(this.name)} calcelled booking for ${colors.magenta(
           trip.driver.name

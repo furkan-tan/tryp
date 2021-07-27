@@ -1,0 +1,8 @@
+extends layout 
+block content 
+    p There are #{trips.length} trips
+    ol
+        p Trips
+        each trip in trips 
+            li
+                a(href=`/trips/${trip.id}`) on #{trip.tripDate} from #{trip.from} to #{trip.destination}

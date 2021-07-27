@@ -1,0 +1,12 @@
+extends layout 
+block content 
+    h3 On #{trip.tripDate} from #{trip.from} to #{trip.destination}
+    h3 Trip Details: 
+    ul 
+        li Driver: #{trip.driver.name}
+        li Vehicle: #{trip.vehicle.year} #{trip.vehicle.brand} #{trip.vehicle.model}  
+        li Passengers: 
+            ol 
+                each passenger in trip.passengers
+                    li #{passenger.name}
+        li Available seats: #{trip.vehicle.availableSeat}

@@ -1,6 +1,7 @@
 extends layout 
 block content
     ol
+        p There are #{drivers.length} drivers
         each driver in drivers 
             li
                 a(href= `/drivers/${driver.id}`)  #{driver.name}

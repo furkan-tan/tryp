@@ -8,6 +8,7 @@ const {
   printCurrentTrip,
   printTripHistory,
 } = require("./lib/print-trips");
+const tripDatabase = require("./database/trip-database");
 
 const driver = new Driver(
   undefined,
@@ -89,6 +90,8 @@ printUpcomingTrips(driver);
 
     await driverDatabase.save([driver]);
 
+    await tripDatabase.save([trip]);
+
     const george = await passengerDatabase.findByName("George");
 
     printUpcomingTrips(george);
@@ -97,16 +100,18 @@ printUpcomingTrips(driver);
 
     await passengerDatabase.update(george);
     await driverDatabase.update(driver);
+    await tripDatabase.update(trip);
 
     printUpcomingTrips(george);
-
+    /*
     george.cancelTrip(trip);
 
     await passengerDatabase.update(george);
     await driverDatabase.update(driver);
+    await tripDatabase.update(trip);
 
     printUpcomingTrips(george);
-
+*/
     const john = await driverDatabase.findByName("John");
 
     printUpcomingTrips(john);

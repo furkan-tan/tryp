@@ -66,7 +66,9 @@ class Driver {
       undefined
     );
     this.upcomingTrips.push(trip);
-    this.upcomingTrips.sort((a.tripDate, b.tripDate), b - a);
+    if (this.upcomingTrips.length > 1) {
+      this.upcomingTrips.sort((a.tripDate, b.tripDate), b - a);
+    }
   }
 
   editTrip(trip, tripDate, from, destination, price) {
@@ -98,8 +100,8 @@ class Driver {
   }
 
   startTrip(trip) {
-    trip.status = TripStatus.IN_PROGRESS;
     const index = this.upcomingTrips.findIndex((t) => t.id === trip.id);
+    trip.status = TripStatus.IN_PROGRESS;
     this.currentTrip = this.upcomingTrips[index];
     this.upcomingTrips.splice(index, 1);
     trip.passengers.forEach((passenger) => {

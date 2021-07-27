@@ -58,7 +58,8 @@ class Vehicle <<Value Object>>{
     +brand:String
     +model:String
     +year:Number
-    +capacity:Number
+    +availableSeat:Number
+    +availableSeat:Number
 }
 
 class Car <<Value Object>>{
