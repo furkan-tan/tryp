@@ -1,5 +1,6 @@
 extends layout 
 block content 
+    a(href="/passengers") "<"Back to Passengers
     p #{passenger.name}'s Profile 
     p Upcoming Trips: 
         ol 
@@ -7,4 +8,5 @@ block content
                 p No trips 
             else
                 each trip in passenger.upcomingTrips 
-                    li on #{trip.tripDate} from #{trip.from} to #{trip.destination}
+                    li 
+                        a(href=`/trips/${trip.id}`) on #{trip.tripDate} from #{trip.from} to #{trip.destination}

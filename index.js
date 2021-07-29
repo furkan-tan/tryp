@@ -8,6 +8,8 @@ const searchRouter = require("./routers/search");
 const errorRouter = require("./routers/error");
 const tripsRouter = require("./routers/trips");
 
+require("./mongo-connection");
+
 const app = express();
 
 app.use(bodyParser.json());

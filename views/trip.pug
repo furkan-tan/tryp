@@ -1,12 +1,15 @@
 extends layout 
 block content 
+    a(href="/trips") "<"Back to trips
     h3 On #{trip.tripDate} from #{trip.from} to #{trip.destination}
     h3 Trip Details: 
     ul 
-        li Driver: #{trip.driver.name}
+        li Driver: 
+            a(href=`/drivers/${trip.driver.id}`) #{trip.driver.name}
         li Vehicle: #{trip.vehicle.year} #{trip.vehicle.brand} #{trip.vehicle.model}  
         li Passengers: 
             ol 
                 each passenger in trip.passengers
-                    li #{passenger.name}
+                    li 
+                        a(href=`/passengers/${passenger.id}`) #{passenger.name}
         li Available seats: #{trip.vehicle.availableSeat}
