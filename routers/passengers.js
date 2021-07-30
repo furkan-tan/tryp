@@ -6,14 +6,6 @@ router.get("/", async (req, res) => {
   res.render("passengers", { passengers });
 });
 
-router.get("/:passengerId", async (req, res) => {
-  const passenger = await passengerDatabase.findBy(
-    "id",
-    req.params.passengerId
-  );
-  res.render("passenger", { passenger });
-});
-
 router.post("/", async (req, res) => {
   const passenger = await passengerDatabase.insert(req.body);
   res.send(passenger);
@@ -22,8 +14,22 @@ router.post("/", async (req, res) => {
 //router.post("/:passengerId/trips");
 
 router.delete("/:passengerId", async (req, res) => {
-  await passengerDatabase.removeByName("id", req.params.passengerId);
+  await passengerDatabase.removeBy("_id", req.params.passengerId);
   res.send("OK");
+});
+
+router.get("/:passengerId", async (req, res) => {
+  const passenger = await passengerDatabase.findBy(
+    "_id",
+    req.params.passengerId
+  );
+  res.render("passenger", { passenger });
+});
+
+router.patch("/:passengerId", async (req, res) => {
+  const { name } = req.body;
+
+  await passengerDatabase.update(req.params.passengerId, { name });
 });
 
 module.exports = router;

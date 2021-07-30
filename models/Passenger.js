@@ -3,6 +3,24 @@ const Card = require("./Card");
 const TripStatus = require("./TripStatus");
 const colors = require("colors");
 
+const mongoose = require("mongoose");
+
+const PassengerSchema = new mongoose.Schema({
+  name: String,
+  surname: String,
+  email: String,
+  phone: String,
+  profilePicture: String,
+  ratingHistory: [Number],
+  rating: Number,
+  currentTrip: String,
+  upcomingTrips: [String],
+  tripHistory: [String],
+  cards: [String],
+});
+
+module.exports = mongoose.model("Passenger", PassengerSchema);
+/*
 class Passenger {
   constructor(
     id = uuid.v4(),
@@ -140,3 +158,4 @@ class Passenger {
 }
 
 module.exports = Passenger;
+*/
