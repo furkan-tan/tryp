@@ -2,10 +2,10 @@ POST http://localhost:3000/passengers HTTP/1.1
 content-type: application/json
 
 {
-  "name":"George",
+  "name":"Vayne",
   "surname":"Odd",
-  "email":"george@gmail.com",
-  "phone":"123456789"}
+  "email":"vayne@gmail.com",
+  "phone":"+1 (409)-733 0530"}
 
 
 ###
@@ -22,3 +22,45 @@ PATCH http://localhost:3000/passengers/6103178b4d298730a83b6ff2 HTTP/1.1
 content-type: application/json
 
 {"name":"new name4"}
+
+###
+
+POST http://localhost:3000/drivers HTTP/1.1
+content-type: application/json
+
+{   "name":"Mike",
+    "surname":"Kite",
+    "email":"Mike@gmail.com",
+    "phone":"04564558585",
+    "drivinglicense":"1112223354543"}
+###
+GET http://localhost:3000/drivers/6103ef7533187073e8f4eeae HTTP/1.1
+
+###
+DELETE http://localhost:3000/drivers/6103ef7533187073e8f4eeae HTTP/1.1
+
+###
+PATCH http://localhost:3000/drivers/6103f112af0140327c15ddfe HTTP/1.1
+Content-Type: application/json
+
+{
+  "name":"new driver name2"
+}
+
+###
+
+POST http://localhost:3000/drivers/6103f112af0140327c15ddfe/trips HTTP/1.1
+Content-Type: application/json
+
+{
+  "vehicle":{
+    "brand":"Mercedes",
+    "model":"E320",
+    "year":"2003",
+    "availableSeat":4
+  },
+  "tripDate":"8th June 2022",
+  "from":"Istanbul",      
+  "destination":"Ankara",
+  "price":100
+}

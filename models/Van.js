@@ -1,7 +1,8 @@
-const Vehicle = require("./Vehicle");
-class Van extends Vehicle {
-  constructor(brand, model, year) {
-    super(brand, model, year, 7);
-  }
-}
-module.exports = Van;
+const VehicleSchema = require("./Vehicle");
+const mongoose = require("mongoose");
+const VanSchema = new mongoose.Schema({
+  ...VehicleSchema.obj,
+  availableSeat: { type: Number, default: 7 },
+});
+
+module.exports = mongoose.model("Van", VanSchema);

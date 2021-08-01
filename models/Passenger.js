@@ -1,24 +1,43 @@
-const uuid = require("uuid");
-const Card = require("./Card");
-const TripStatus = require("./TripStatus");
-const colors = require("colors");
-
 const mongoose = require("mongoose");
+require("mongoose-type-email");
+require("mongoose-type-phone");
 
 const PassengerSchema = new mongoose.Schema({
-  name: String,
-  surname: String,
-  email: String,
-  phone: String,
+  name: { type: String, required: true, minlength: 2 },
+  surname: { type: String, required: true, minlength: 2 },
+  email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
+  phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
   profilePicture: String,
   ratingHistory: [Number],
   rating: Number,
-  currentTrip: String,
-  upcomingTrips: [String],
-  tripHistory: [String],
-  cards: [String],
+  currentTrip: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Trip",
+    autopopulate: true,
+  },
+  upcomingTrips: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Trip",
+      autopopulate: true,
+    },
+  ],
+  tripHistory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Trip",
+      autopopulate: true,
+    },
+  ],
+  cards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Card",
+    },
+  ],
 });
 
+PassengerSchema.plugin(require("mongoose-autopopulate"));
 module.exports = mongoose.model("Passenger", PassengerSchema);
 /*
 class Passenger {

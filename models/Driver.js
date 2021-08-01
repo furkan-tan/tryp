@@ -1,10 +1,49 @@
-const uuid = require("uuid");
-const TripStatus = require("./TripStatus");
-const Car = require("./Car");
-const Van = require("./Van");
-const Motorcycle = require("./Motorcycle");
-const Trip = require("./Trip");
+const mongoose = require("mongoose");
+require("mongoose-type-email");
+require("mongoose-type-phone");
 
+const DriverSchema = new mongoose.Schema({
+  name: { type: String, required: true, minlength: 2 },
+  surname: { type: String, required: true, minlength: 2 },
+  email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
+  phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
+  profilePicture: String,
+  drivingLicense: String,
+  ratingHistory: [Number],
+  rating: Number,
+  currentTrip: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Trip",
+    autopopulate: true,
+  },
+  upcomingTrips: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Trip",
+      autopopulate: true,
+    },
+  ],
+  tripHistory: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Trip",
+      autopopulate: true,
+    },
+  ],
+  vehicles: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vehicle",
+    },
+  ],
+});
+
+//DriverSchema.methods.createTrip= async function(vehicle, tripDate, from, destination, price)
+
+DriverSchema.plugin(require("mongoose-autopopulate"));
+module.exports = mongoose.model("Driver", DriverSchema);
+
+/*
 class Driver {
   constructor(
     id = uuid.v4(),
@@ -155,3 +194,5 @@ class Driver {
 }
 
 module.exports = Driver;
+
+*/

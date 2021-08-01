@@ -1,11 +1,7 @@
-const uuid = require("uuid");
-class Vehicle {
-  constructor(brand, model, year, availableSeat) {
-    this.id = uuid.v4();
-    this.brand = brand;
-    this.model = model;
-    this.year = year;
-    this.availableSeat = availableSeat;
-  }
-}
-module.exports = Vehicle;
+const mongoose = require("mongoose");
+const VehicleSchema = new mongoose.Schema({
+  brand: String,
+  model: String,
+  year: { type: Number, min: 2000 },
+});
+module.exports = mongoose.model("Vehicle", VehicleSchema);

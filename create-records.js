@@ -1,14 +1,14 @@
 const Driver = require("./models/Driver");
 const Passenger = require("./models/Passenger");
-const passengerDatabase = require("./database/passenger-database");
-const driverDatabase = require("./database/driver-database");
+const passengerservice = require("./service/passenger-service");
+const driverservice = require("./service/driver-service");
 
 const {
   printUpcomingTrips,
   printCurrentTrip,
   printTripHistory,
 } = require("./lib/print-trips");
-const tripDatabase = require("./database/trip-database");
+const tripservice = require("./service/trip-service");
 
 const driver = new Driver(
   undefined,
@@ -80,7 +80,7 @@ printUpcomingTrips(driver);
 
 (async () => {
   try {
-    await passengerDatabase.save([
+    await passengerservice.save([
       passenger,
       passenger2,
       passenger3,
@@ -88,31 +88,31 @@ printUpcomingTrips(driver);
       passenger5,
     ]);
 
-    await driverDatabase.save([driver]);
+    await driverservice.save([driver]);
 
-    await tripDatabase.save([trip]);
+    await tripservice.save([trip]);
 
-    const george = await passengerDatabase.findByName("George");
+    const george = await passengerservice.findByName("George");
 
     printUpcomingTrips(george);
 
     george.cancelTrip(trip);
 
-    await passengerDatabase.update(george);
-    await driverDatabase.update(driver);
-    await tripDatabase.update(trip);
+    await passengerservice.update(george);
+    await driverservice.update(driver);
+    await tripservice.update(trip);
 
     printUpcomingTrips(george);
     /*
     george.cancelTrip(trip);
 
-    await passengerDatabase.update(george);
-    await driverDatabase.update(driver);
-    await tripDatabase.update(trip);
+    await passengerservice.update(george);
+    await driverservice.update(driver);
+    await tripservice.update(trip);
 
     printUpcomingTrips(george);
 */
-    const john = await driverDatabase.findByName("John");
+    const john = await driverservice.findByName("John");
 
     printUpcomingTrips(john);
   } catch (e) {
@@ -127,20 +127,20 @@ const {
   printCurrentTrip,
   printTripHistory,
 } = require("../tryp/lib/print-trips");
-const passengerDatabase = require("./database/passenger-database");
-const driverDatabase = require("./database/driver-database");
-const tripDatabase = require("./database/trip-database");
+const passengerservice = require("./service/passenger-service");
+const driverservice = require("./service/driver-service");
+const tripservice = require("./service/trip-service");
 //const db = require("./test/db");
 
-//passengerDatabase.insert(passenger5);
+//passengerservice.insert(passenger5);
 
-const p5 = passengerDatabase.findByName("Dana");
+const p5 = passengerservice.findByName("Dana");
 
 p5.bookTrip(trip);
-passengerDatabase.update(p5);
-driverDatabase.update(driver);
-console.log(passengerDatabase.load());
-const drivers = driverDatabase.load();
+passengerservice.update(p5);
+driverservice.update(driver);
+console.log(passengerservice.load());
+const drivers = driverservice.load();
 
 console.log(drivers);
 
@@ -148,13 +148,13 @@ drivers.forEach(printUpcomingTrips);
 drivers.forEach(printCurrentTrip);
 drivers.forEach(printTripHistory);
 
-const john = driverDatabase.findByName("John");
+const john = driverservice.findByName("John");
 john.startTrip(trip);
 
-driverDatabase.update(john);
-trip.passengers.forEach((passenger) => passengerDatabase.update(passenger));
+driverservice.update(john);
+trip.passengers.forEach((passenger) => passengerservice.update(passenger));
 
-const passengers = passengerDatabase.load();
+const passengers = passengerservice.load();
 printCurrentTrip(john);
 
 passengers.forEach(printCurrentTrip);

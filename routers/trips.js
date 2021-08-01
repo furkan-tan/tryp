@@ -1,15 +1,21 @@
-const tripDatabase = require("../database/trip-database");
+const tripService = require("../services/trip-service");
 
 const router = require("express").Router();
 
 router.get("/", async (req, res) => {
-  const trips = await tripDatabase.load();
+  const trips = await tripService.load();
   res.render("trips", { trips });
 });
 
 router.get("/:tripId", async (req, res) => {
   const id = req.params.tripId;
-  const trip = await tripDatabase.findBy("id", id);
+  const trip = await tripService.findBy("id", id);
+  res.render("trip", { trip });
+});
+
+router.get("/search", async (req, res) => {
+  const driverId = req.query.driverId;
+  const trip = await tripService.findBy(driverId);
   res.render("trip", { trip });
 });
 

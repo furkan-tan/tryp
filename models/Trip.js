@@ -1,6 +1,40 @@
-const uuid = require("uuid");
-const TripStatus = require("../models/TripStatus");
+const mongoose = require("mongoose");
 
+const TripSchema = mongoose.Schema(
+  {
+    driver: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Driver",
+      autopopulate: true,
+    },
+    vehicle: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vehicle",
+    },
+    passengers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Passenger",
+        autopopulate: true,
+      },
+    ],
+    tripDate: { type: Date, required: true },
+    from: { type: String, required: true },
+    destination: { type: String, required: true },
+    price: { type: Number, required: true },
+    status: {
+      type: String,
+      enum: ["AVAILABLE", "BOOKED", "IN_PROGRESS", "FINISHED", "CANCELLED"],
+      default: "AVAILABLE",
+    },
+  },
+  { timestamps: true }
+);
+
+TripSchema.plugin(require("mongoose-autopopulate"));
+
+module.exports = mongoose.model("Trip", TripSchema);
+/*
 class Trip {
   constructor(
     id = uuid.v4(),
@@ -54,3 +88,4 @@ class Trip {
 }
 
 module.exports = Trip;
+*/

@@ -4,7 +4,7 @@ block content
     p #{passenger.name}'s Profile 
     p Upcoming Trips: 
         ol 
-            if(!passenger.upcomingTrips)
+            if(passenger.upcomingTrips.length===0)
                 p No trips 
             else
                 each trip in passenger.upcomingTrips 
