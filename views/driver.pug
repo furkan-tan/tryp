@@ -1,13 +1,29 @@
 extends layout
 block content 
     a(href="/drivers") "<"Back to Drivers
+    br
+    br
+    img(src=`${driver.profilePicture}`, alt="profile", width="100" height="100")
     h2 #{driver.name} 's Profile
-    p Upcoming Trips:
+    p Email:#{driver.email}
+    p Phone:#{driver.phone}
+    P Vehicles:
     ol 
-        each trip in driver.upcomingTrips
-            li on #{trip.tripDate} from #{trip.from} to #{trip.destination} 
-            p Passengers for this trip:
-                ol 
-                    each passenger in trip.passengers
-                        li 
-                            a(href=`/passengers/${passenger.id}`) #{passenger.name}
+        if(driver.vehicles.length===0)
+            p No Vehicles 
+        else 
+            each vehicle in driver.vehicles 
+                li #{vehicle.year} #{vehicle.brand} #{vehicle.model} 
+                p Available Seat: #{vehicle.availableSeat}
+    p Upcoming Trips:
+        ol 
+            if(driver.upcomingTrips.length==0)
+                p No Trips
+            else 
+                each trip in driver.upcomingTrips
+                    li on #{trip.tripDate} from #{trip.from} to #{trip.destination} 
+                    p Passengers for this trip:
+                        ol 
+                            each passenger in trip.passengers
+                                li 
+                                    a(href=`/passengers/${passenger.id}`) #{passenger.name}

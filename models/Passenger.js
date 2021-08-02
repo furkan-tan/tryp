@@ -7,9 +7,13 @@ const PassengerSchema = new mongoose.Schema({
   surname: { type: String, required: true, minlength: 2 },
   email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
   phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
-  profilePicture: String,
+  profilePicture: {
+    type: String,
+    default:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+  },
   ratingHistory: [Number],
-  rating: Number,
+  rating: { type: Number, default: 0 },
   currentTrip: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Trip",

@@ -7,7 +7,11 @@ const DriverSchema = new mongoose.Schema({
   surname: { type: String, required: true, minlength: 2 },
   email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
   phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
-  profilePicture: String,
+  profilePicture: {
+    type: String,
+    default:
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+  },
   drivingLicense: String,
   ratingHistory: [Number],
   rating: Number,
@@ -34,6 +38,7 @@ const DriverSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Vehicle",
+      autopopulate: true,
     },
   ],
 });
@@ -75,21 +80,6 @@ class Driver {
     this.vehicles = vehicles;
   }
 
-  addVehicle(type, brand, model, year) {
-    let vehicle = null;
-    if (type === "Car") {
-      vehicle = new Car(brand, model, year);
-    } else if (type === "Van") {
-      vehicle = new Van(brand, model, year);
-    } else if (type === "Motorcycle") {
-      vehicle = new Motorcycle(brand, model, year);
-    }
-    this.vehicles.push(vehicle);
-  }
-  removeVehicle(vehicle) {
-    const index = this.vehicles.findIndex((item) => item.id === vehicle.id);
-    this.splice(index, 1);
-  }
 
   createTrip(vehicle, tripDate, from, destination, price) {
     let trip = new Trip(

@@ -23,7 +23,7 @@ router.delete("/:passengerId", async (req, res) => {
 });
 
 router.get("/:passengerId", async (req, res) => {
-  const passenger = await passengerService.findById(req.params.passengerId);
+  const passenger = await passengerService.find(req.params.passengerId);
   res.render("passenger", { passenger });
 });
 

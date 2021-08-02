@@ -34,8 +34,12 @@ class BaseService {
     return objects.find((o) => o.name === name);
   }
 
-  async findById(id) {
+  async find(id) {
     return this.model.findById(id);
+  }
+
+  async query(obj) {
+    return this.model.find(obj);
   }
 
   async update(id, object) {

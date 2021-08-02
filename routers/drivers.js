@@ -1,5 +1,7 @@
 const router = require("express").Router();
+const { tripService } = require("../services");
 const driverService = require("../services/driver-service");
+const vehicleService = require("../services/vehicle-service");
 
 router.get("/", async (req, res) => {
   const drivers = await driverService.load();
@@ -12,7 +14,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:driverId", async (req, res) => {
-  const driver = await driverService.findBy("id", req.params.driverId);
+  const driver = await driverService.find(req.params.driverId);
   res.render("driver", { driver });
 });
 
@@ -32,9 +34,51 @@ router.patch("/:driverId", async (req, res) => {
 
 router.post("/:driverId/trips", async (req, res) => {
   const { driverId } = req.params;
+  const { vehicleId } = req.query;
+  const { tripDate, from, destination, price } = req.body;
+
+  const date = new Date(tripDate);
+
+  const trip = await tripService.createTrip(
+    driverId,
+    vehicleId,
+    date,
+    from,
+    destination,
+    price
+  );
+  res.send(trip);
+});
+
+router.post("/:driverId/vehicles", async (req, res) => {
+  const { driverId } = req.params;
+  const { type, brand, model, year } = req.body;
+
+  const vehicle = await vehicleService.addVehicle(
+    driverId,
+    type,
+    brand,
+    model,
+    year
+  );
+  res.send(vehicle);
+});
+
+router.delete("/:driverId/vehicles/:vehicleId", async (req, res) => {
+  const { driverId } = req.params;
+  const { vehicleId } = req.params;
+
+  await vehicleService.removeVehicle(driverId, vehicleId);
+
+  res.send("Ok");
+});
+
+/*
+router.post("/:driverId/trips", async (req, res) => {
+  const { driverId } = req.params;
   const { vehicle, tripDate, from, destination, price } = req.body;
 
-  const driver = await driverService.findById(driverId);
+  const driver = await driverService.find(driverId);
   const trip = await driverService.createTrip(
     driver,
     vehicle,
@@ -45,5 +89,5 @@ router.post("/:driverId/trips", async (req, res) => {
   );
   res.send(trip);
 });
-
+*/
 module.exports = router;
