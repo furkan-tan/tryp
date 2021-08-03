@@ -29,14 +29,14 @@ POST http://localhost:3000/drivers HTTP/1.1
 content-type: application/json
 
 { 
-  "name":"Nikola",
+  "name":"Adam",
   "surname":"Mingo",
-  "email":"nikola@gmail.com",
-  "phone":"+1 (215)-733 0530",
+  "email":"adam@gmail.com",
+  "phone":"+1 (225)-733 0530",
   "drivinglicense":"1112223354543"}
 
 ###
-GET http://localhost:3000/drivers/61082b7e472aab5e306d9a6e HTTP/1.1
+GET http://localhost:3000/drivers/6109247bb24d7a2c98c95f76 HTTP/1.1
 
 ###
 DELETE http://localhost:3000/drivers/6103ef7533187073e8f4eeae HTTP/1.1
@@ -51,13 +51,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/drivers/61083eebb505e23d0039e521/vehicles HTTP/1.1
+POST http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/vehicles HTTP/1.1
 Content-Type: application/json
 
 {
   "type":"Car",
-  "brand":"Honda",
-  "model":"Civic",
+  "brand":"Audi",
+  "model":"A6",
   "year":"2012"
 }
 
@@ -68,11 +68,11 @@ DELETE http://localhost:3000/drivers/61082b7e472aab5e306d9a6e/vehicles/61082f6a7
 
 ###
 
-POST http://localhost:3000/drivers/61083eebb505e23d0039e521/trips?vehicleId=61083f01b505e23d0039e524 HTTP/1.1
+POST http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/trips?vehicleId=61092de1100edc3cb48e8bcc HTTP/1.1
 Content-Type: application/json
 
 {
-  "tripDate":"2016-05-18T16:00:00Z",
+  "tripDate":"2021-10-18T16:00:00Z",
   "from":"Istanbul",      
   "destination":"Ankara",
   "price":100

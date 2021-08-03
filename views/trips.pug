@@ -5,4 +5,4 @@ block content
         p Trips
         each trip in trips 
             li
-                a(href=`/trips/${trip.id}`) on #{trip.tripDate} from #{trip.from} to #{trip.destination}
+                a(href=`/trips/${trip.id}`) on #{trip.tripDate} from #{trip.from} to #{trip.destination} with #{trip.driver.name}

@@ -17,19 +17,23 @@ class TripService extends BaseService {
   async createTrip(driverId, vehicleId, tripDate, from, destination, price) {
     const driver = await driverService.find(driverId);
     const vehicle = await vehicleService.find(vehicleId);
-    const trip = await this.insert(
+    const trip = await this.insert({
       driver,
       vehicle,
       tripDate,
       from,
       destination,
-      price
-    );
+      price,
+    });
 
     driver.upcomingTrips.push(trip);
     if (driver.upcomingTrips.length > 1) {
-      driver.upcomingTrips.sort((a.tripDate, b.tripDate), b - a);
+      driver.upcomingTrips.sort((a, b) => {
+        b.tripDate - a.tripDate;
+      });
     }
+    await driver.save();
+    return trip;
   }
 
   async editTrip(trip, tripDate, from, destination, price) {

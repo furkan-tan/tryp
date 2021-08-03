@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:tripId", async (req, res) => {
   const id = req.params.tripId;
-  const trip = await tripService.findBy("id", id);
+  const trip = await tripService.find(id);
   res.render("trip", { trip });
 });
 

@@ -17,13 +17,13 @@ class VehicleService extends BaseService {
       vehicleType = await motorcycleService.insert({ brand, model, year });
     }
 
-    const vehicle = await this.find(vehicleType.id);
+    //const vehicle = await this.find(vehicleType.id);
 
-    driver.vehicles.push(vehicle);
+    driver.vehicles.push(vehicleType);
 
     await driver.save();
 
-    return vehicle;
+    return vehicleType;
   }
 
   async removeVehicle(driverId, vehicleId) {

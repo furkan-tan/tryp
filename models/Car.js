@@ -1,4 +1,4 @@
-const VehicleSchema = require("./Vehicle");
+const Vehicle = require("./Vehicle");
 const mongoose = require("mongoose");
 const CarSchema = new mongoose.Schema(
   {
@@ -6,5 +6,4 @@ const CarSchema = new mongoose.Schema(
   },
   { discriminatorKey: "_type" }
 );
-CarSchema.plugin(require("mongoose-autopopulate"));
-module.exports = VehicleSchema.discriminator("Car", CarSchema);
+module.exports = Vehicle.discriminator("Car", CarSchema);

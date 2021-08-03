@@ -21,9 +21,13 @@ block content
                 p No Trips
             else 
                 each trip in driver.upcomingTrips
-                    li on #{trip.tripDate} from #{trip.from} to #{trip.destination} 
+                    li 
+                        a(href=`/trips/${trip.id}`) on #{trip.tripDate} from #{trip.from} to #{trip.destination} 
                     p Passengers for this trip:
                         ol 
-                            each passenger in trip.passengers
-                                li 
-                                    a(href=`/passengers/${passenger.id}`) #{passenger.name}
+                            if(trip.passengers.length===0)
+                                p Nobody booked this trip yet
+                            else
+                                each passenger in trip.passengers
+                                    li 
+                                        a(href=`/passengers/${passenger.id}`) #{passenger.name}

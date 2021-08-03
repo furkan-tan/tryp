@@ -13,25 +13,6 @@ router.post("/", async (req, res) => {
   res.send(driver);
 });
 
-router.get("/:driverId", async (req, res) => {
-  const driver = await driverService.find(req.params.driverId);
-  res.render("driver", { driver });
-});
-
-router.delete("/:driverId", async (req, res) => {
-  await driverService.removeBy("_id", req.params.driverId);
-  res.send("Deleted");
-});
-
-router.patch("/:driverId", async (req, res) => {
-  const { driverId } = req.params;
-  const { name } = req.body;
-
-  await driverService.update(driverId, { name });
-
-  res.send("Updated");
-});
-
 router.post("/:driverId/trips", async (req, res) => {
   const { driverId } = req.params;
   const { vehicleId } = req.query;
@@ -62,6 +43,25 @@ router.post("/:driverId/vehicles", async (req, res) => {
     year
   );
   res.send(vehicle);
+});
+
+router.get("/:driverId", async (req, res) => {
+  const driver = await driverService.find(req.params.driverId);
+  res.render("driver", { driver });
+});
+
+router.delete("/:driverId", async (req, res) => {
+  await driverService.removeBy("_id", req.params.driverId);
+  res.send("Deleted");
+});
+
+router.patch("/:driverId", async (req, res) => {
+  const { driverId } = req.params;
+  const { name } = req.body;
+
+  await driverService.update(driverId, { name });
+
+  res.send("Updated");
 });
 
 router.delete("/:driverId/vehicles/:vehicleId", async (req, res) => {

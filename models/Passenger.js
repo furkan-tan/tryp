@@ -17,20 +17,20 @@ const PassengerSchema = new mongoose.Schema({
   currentTrip: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Trip",
-    autopopulate: true,
+    autopopulate: { maxDepth: 2 },
   },
   upcomingTrips: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
-      autopopulate: true,
+      autopopulate: { maxDepth: 2 },
     },
   ],
   tripHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
-      autopopulate: true,
+      autopopulate: { maxDepth: 2 },
     },
   ],
   cards: [

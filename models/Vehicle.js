@@ -4,9 +4,9 @@ const VehicleSchema = new mongoose.Schema(
     brand: String,
     model: String,
     year: { type: Number, min: 2000 },
-    availableSeat: 0,
+    status: String,
   },
-  { discriminatorKey: "_type" }
+  { collection: "vehicles", discriminatorKey: "_type" }
 );
 
 module.exports = mongoose.model("Vehicle", VehicleSchema);

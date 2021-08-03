@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const VehicleSchema = require("./Vehicle");
 require("mongoose-type-email");
 require("mongoose-type-phone");
 
@@ -18,27 +19,27 @@ const DriverSchema = new mongoose.Schema({
   currentTrip: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Trip",
-    autopopulate: true,
+    autopopulate: { maxDepth: 2 },
   },
   upcomingTrips: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
-      autopopulate: true,
+      autopopulate: { maxDepth: 2 },
     },
   ],
   tripHistory: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
-      autopopulate: true,
+      autopopulate: { maxDepth: 2 },
     },
   ],
   vehicles: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Vehicle",
-      autopopulate: true,
+      ref: "Car",
+      autopopulate: { maxDepth: 2 },
     },
   ],
 });

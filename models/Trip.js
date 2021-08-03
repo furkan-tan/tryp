@@ -1,24 +1,25 @@
 const mongoose = require("mongoose");
 
-const TripSchema = mongoose.Schema(
+const TripSchema = new mongoose.Schema(
   {
     driver: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Driver",
-      autopopulate: true,
+      autopopulate: { maxDepth: 2 },
     },
     vehicle: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Vehicle",
+      autopopulate: { maxDepth: 1 },
     },
     passengers: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Passenger",
-        autopopulate: true,
+        autopopulate: { maxDepth: 2 },
       },
     ],
-    tripDate: { type: Date, required: true },
+    tripDate: { type: Date, required: true, min: Date.now },
     from: { type: String, required: true },
     destination: { type: String, required: true },
     price: { type: Number, required: true },
