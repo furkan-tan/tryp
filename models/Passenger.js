@@ -2,44 +2,47 @@ const mongoose = require("mongoose");
 require("mongoose-type-email");
 require("mongoose-type-phone");
 
-const PassengerSchema = new mongoose.Schema({
-  name: { type: String, required: true, minlength: 2 },
-  surname: { type: String, required: true, minlength: 2 },
-  email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
-  phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
-  profilePicture: {
-    type: String,
-    default:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  },
-  ratingHistory: [Number],
-  rating: { type: Number, default: 0 },
-  currentTrip: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Trip",
-    autopopulate: { maxDepth: 2 },
-  },
-  upcomingTrips: [
-    {
+const PassengerSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, minlength: 2 },
+    surname: { type: String, required: true, minlength: 2 },
+    email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
+    phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
+    profilePicture: {
+      type: String,
+      default:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    },
+    ratingHistory: [Number],
+    rating: { type: Number, default: 0 },
+    currentTrip: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
       autopopulate: { maxDepth: 2 },
     },
-  ],
-  tripHistory: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Trip",
-      autopopulate: { maxDepth: 2 },
-    },
-  ],
-  cards: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Card",
-    },
-  ],
-});
+    upcomingTrips: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Trip",
+        autopopulate: { maxDepth: 2 },
+      },
+    ],
+    tripHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Trip",
+        autopopulate: { maxDepth: 2 },
+      },
+    ],
+    cards: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Card",
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 PassengerSchema.plugin(require("mongoose-autopopulate"));
 module.exports = mongoose.model("Passenger", PassengerSchema);

@@ -14,7 +14,6 @@ block content
         else 
             each vehicle in driver.vehicles 
                 li #{vehicle.year} #{vehicle.brand} #{vehicle.model} 
-                p Available Seat: #{vehicle.availableSeat}
     p Upcoming Trips:
         ol 
             if(driver.upcomingTrips.length==0)
@@ -31,3 +30,4 @@ block content
                                 each passenger in trip.passengers
                                     li 
                                         a(href=`/passengers/${passenger.id}`) #{passenger.name}
+                    p Available Seat: #{trip.availableSeat}

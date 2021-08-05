@@ -14,9 +14,19 @@ class TripService extends BaseService {
     return this.findBy("driver", driverId);
   }
 
-  async createTrip(driverId, vehicleId, tripDate, from, destination, price) {
+  async createTrip(
+    driverId,
+    vehicleId,
+    tripDate,
+    from,
+    destination,
+    availableSeat,
+    price
+  ) {
     const driver = await driverService.find(driverId);
     const vehicle = await vehicleService.find(vehicleId);
+    vehicle.availableSeat = availableSeat;
+    await vehicle.save();
     const trip = await this.insert({
       driver,
       vehicle,
@@ -36,7 +46,17 @@ class TripService extends BaseService {
     return trip;
   }
 
-  async editTrip(trip, tripDate, from, destination, price) {
+  async editTripDate(driverId, tripId, tripDate) {
+    const driver = await driverService.find(driverId);
+    const trip = await this.find(tripId);
+    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
+    this.upcomingTrips[index].tripDate = tripDate;
+    this.upcomingTrips[index].from = from;
+    this.upcomingTrips[index].destination = destination;
+    this.upcomingTrips[index].price = price;
+  }
+
+  async editTripFrom(tripId, tripDate, from, destination, price) {
     const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
     this.upcomingTrips[index].tripDate = tripDate;
     this.upcomingTrips[index].from = from;

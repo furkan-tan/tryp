@@ -29,6 +29,4 @@ app.all("*", (req, res) => {
   res.redirect("/error");
 });
 
-app.listen(3000, () => {
-  console.log("started listening port 3000");
-});
+module.exports = app;

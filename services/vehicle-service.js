@@ -1,29 +1,31 @@
 const BaseService = require("./base-service");
-const carService = require("./car-service");
 const driverService = require("./driver-service");
-const motorcycleService = require("./motorcycle-service");
-const vanService = require("./van-service");
 const Vehicle = require("../models/Vehicle");
+const carService = require("./car-service");
 
 class VehicleService extends BaseService {
   async addVehicle(driverId, type, brand, model, year) {
     const driver = await driverService.find(driverId);
-    let vehicleType = null;
-    if (type === "Car") {
-      vehicleType = await carService.insert({ brand, model, year });
-    } else if (type === "Van") {
-      vehicleType = await vanService.insert({ brand, model, year });
-    } else if (type === "Motorcycle") {
-      vehicleType = await motorcycleService.insert({ brand, model, year });
+    let vehicle = null;
+    switch (type) {
+      case "Car":
+        vehicle = await carService.insert({ brand, model, year });
+        break;
+      case "Van":
+        vehicle = await vanService.insert({ brand, model, year });
+        break;
+      case "Motorcycle":
+        vehicle = await motorcycleService.insert({ brand, model, year });
+        break;
+      default:
+        throw new Error("Vehicle Type is not defined.");
     }
 
-    //const vehicle = await this.find(vehicleType.id);
-
-    driver.vehicles.push(vehicleType);
+    driver.vehicles.push(vehicle);
 
     await driver.save();
 
-    return vehicleType;
+    return vehicle;
   }
 
   async removeVehicle(driverId, vehicleId) {

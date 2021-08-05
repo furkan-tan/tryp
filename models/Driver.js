@@ -1,48 +1,50 @@
 const mongoose = require("mongoose");
-const VehicleSchema = require("./Vehicle");
 require("mongoose-type-email");
 require("mongoose-type-phone");
 
-const DriverSchema = new mongoose.Schema({
-  name: { type: String, required: true, minlength: 2 },
-  surname: { type: String, required: true, minlength: 2 },
-  email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
-  phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
-  profilePicture: {
-    type: String,
-    default:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
-  },
-  drivingLicense: String,
-  ratingHistory: [Number],
-  rating: Number,
-  currentTrip: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Trip",
-    autopopulate: { maxDepth: 2 },
-  },
-  upcomingTrips: [
-    {
+const DriverSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, minlength: 2 },
+    surname: { type: String, required: true, minlength: 2 },
+    email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
+    phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
+    profilePicture: {
+      type: String,
+      default:
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    },
+    drivingLicense: String,
+    ratingHistory: [Number],
+    rating: Number,
+    currentTrip: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Trip",
       autopopulate: { maxDepth: 2 },
     },
-  ],
-  tripHistory: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Trip",
-      autopopulate: { maxDepth: 2 },
-    },
-  ],
-  vehicles: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Car",
-      autopopulate: { maxDepth: 2 },
-    },
-  ],
-});
+    upcomingTrips: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Trip",
+        autopopulate: { maxDepth: 2 },
+      },
+    ],
+    tripHistory: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Trip",
+        autopopulate: { maxDepth: 2 },
+      },
+    ],
+    vehicles: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Vehicle",
+        autopopulate: { maxDepth: 2 },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
 //DriverSchema.methods.createTrip= async function(vehicle, tripDate, from, destination, price)
 
@@ -50,38 +52,6 @@ DriverSchema.plugin(require("mongoose-autopopulate"));
 module.exports = mongoose.model("Driver", DriverSchema);
 
 /*
-class Driver {
-  constructor(
-    id = uuid.v4(),
-    name,
-    surname,
-    email,
-    phone,
-    profilePicture = "https://readyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",
-    drivingLicense,
-    ratingHistory = [],
-    rating = 0,
-    currentTrip = null,
-    upcomingTrips = [],
-    tripHistory = [],
-    vehicles = []
-  ) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.email = email;
-    this.phone = phone;
-    this.profilePicture = profilePicture;
-    this.drivingLicense = drivingLicense;
-    this.ratingHistory = ratingHistory;
-    this.rating = rating;
-    this.currentTrip = currentTrip;
-    this.upcomingTrips = upcomingTrips;
-    this.tripHistory = tripHistory;
-    this.vehicles = vehicles;
-  }
-
-
   createTrip(vehicle, tripDate, from, destination, price) {
     let trip = new Trip(
       undefined,

@@ -63,17 +63,18 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/drivers/61082b7e472aab5e306d9a6e/vehicles/61082f6a72142c04c4af6f2f HTTP/1.1
+DELETE http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/vehicles/610be381e311c55250b61972 HTTP/1.1
 
 
 ###
 
-POST http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/trips?vehicleId=61092de1100edc3cb48e8bcc HTTP/1.1
+POST http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/trips?vehicleId=610bece26a959d5594350991 HTTP/1.1
 Content-Type: application/json
 
 {
   "tripDate":"2021-10-18T16:00:00Z",
   "from":"Istanbul",      
   "destination":"Ankara",
+  "availableSeat":3,
   "price":100
 }

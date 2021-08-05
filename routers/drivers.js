@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 router.post("/:driverId/trips", async (req, res) => {
   const { driverId } = req.params;
   const { vehicleId } = req.query;
-  const { tripDate, from, destination, price } = req.body;
+  const { tripDate, from, destination, availableSeat, price } = req.body;
 
   const date = new Date(tripDate);
 
@@ -26,6 +26,7 @@ router.post("/:driverId/trips", async (req, res) => {
     date,
     from,
     destination,
+    availableSeat,
     price
   );
   res.send(trip);
