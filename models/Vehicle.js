@@ -6,7 +6,7 @@ const VehicleSchema = new mongoose.Schema(
     model: String,
     year: { type: Number, min: 2000 },
   },
-  { collection: "trips", discriminatorKey: "_type" }
+  { collection: "vehicles", discriminatorKey: "_type" }
 );
 
 module.exports = mongoose.model("Vehicle", VehicleSchema);

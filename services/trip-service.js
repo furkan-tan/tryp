@@ -25,8 +25,9 @@ class TripService extends BaseService {
   ) {
     const driver = await driverService.find(driverId);
     const vehicle = await vehicleService.find(vehicleId);
-    vehicle.availableSeat = availableSeat;
-    await vehicle.save();
+    if (availableSeat > vehicle.availableSeat) {
+      return new Error("Available Seat Error");
+    }
     const trip = await this.insert({
       driver,
       vehicle,
@@ -34,6 +35,7 @@ class TripService extends BaseService {
       from,
       destination,
       price,
+      availableSeat,
     });
 
     driver.upcomingTrips.push(trip);

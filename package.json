@@ -11,7 +11,7 @@
     "start": "node .bin/www",
     "watch": "nodemon --ignore '*.json' .bin/www",
     "test": "jest --coverage --verbose",
-    "test-watch": "jest --coverage --verbose --watch "
+    "test-watch": "jest --coverage --verbose --watch"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "jest": "^27.0.6"
+    "jest": "^27.0.6",
+    "supertest": "^6.1.4"
   }
 }

@@ -23,6 +23,7 @@ const TripSchema = new mongoose.Schema(
     from: { type: String, required: true },
     destination: { type: String, required: true },
     price: { type: Number, required: true },
+    availableSeat: { type: Number, min: 1 },
     status: {
       type: String,
       enum: ["AVAILABLE", "BOOKED", "IN_PROGRESS", "FINISHED", "CANCELLED"],

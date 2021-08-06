@@ -15,5 +15,5 @@ block content
             each passenger in trip.passengers
                 li 
                     a(href=`/passengers/${passenger.id}`) #{passenger.name}
-        li Available seats: #{trip.vehicle.availableSeat}
+        li Available seats: #{trip.availableSeat}
         li Status: #{trip.status}
