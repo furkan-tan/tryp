@@ -31,8 +31,8 @@ content-type: application/json
 { 
   "name":"Kate",
   "surname":"Mingo",
-  "email":"Kate@gmail.com",
-  "phone":"+1 (201)-733 0530",
+  "email":"Kate2@gmail.com",
+  "phone":"+1 (202)-733 0530",
   "drivinglicense":"1112223354543"}
 
 ###
@@ -42,11 +42,11 @@ GET http://localhost:3000/drivers/6109247bb24d7a2c98c95f76 HTTP/1.1
 DELETE http://localhost:3000/drivers/6103ef7533187073e8f4eeae HTTP/1.1
 
 ###
-PATCH http://localhost:3000/drivers/61070a90b37cb766147b3fec HTTP/1.1
+PATCH http://localhost:3000/drivers/610d79a2d04a1f424447458c HTTP/1.1
 Content-Type: application/json
 
 {
-  "name":"Moustafa"
+  "surname":"Pan"
 }
 
 ###
@@ -68,7 +68,7 @@ DELETE http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/vehicles/610be381e
 
 ###
 
-POST http://localhost:3000/drivers/610d79a2d04a1f424447458c/trips?vehicleId=610d7b896727801d786bd6a0 HTTP/1.1
+POST http://localhost:3000/drivers/610d79a2d04a1f424447458c/trips?vehicleId=610ffc1d8bb6f952e454c031 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -77,4 +77,13 @@ Content-Type: application/json
   "destination":"Ankara",
   "availableSeat":2,
   "price":100
+}
+
+###
+
+PATCH http://localhost:3000/drivers/610d79a2d04a1f424447458c HTTP/1.1
+Content-Type: application/json
+
+{
+  "surname":"Pan"
 }

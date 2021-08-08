@@ -25,8 +25,8 @@ class TripService extends BaseService {
   ) {
     const driver = await driverService.find(driverId);
     const vehicle = await vehicleService.find(vehicleId);
-    if (availableSeat > vehicle.availableSeat) {
-      return new Error("Available Seat Error");
+    if (availableSeat > vehicle.seatCapacity) {
+      return new Error("Exceed Seat Capacity Error");
     }
     const trip = await this.insert({
       driver,
@@ -39,11 +39,9 @@ class TripService extends BaseService {
     });
 
     driver.upcomingTrips.push(trip);
-    if (driver.upcomingTrips.length > 1) {
-      driver.upcomingTrips.sort((a, b) => {
-        b.tripDate - a.tripDate;
-      });
-    }
+    driver.upcomingTrips.sort((a, b) => {
+      b.tripDate - a.tripDate;
+    });
     await driver.save();
     return trip;
   }
@@ -51,11 +49,11 @@ class TripService extends BaseService {
   async editTripDate(driverId, tripId, tripDate) {
     const driver = await driverService.find(driverId);
     const trip = await this.find(tripId);
-    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
-    this.upcomingTrips[index].tripDate = tripDate;
-    this.upcomingTrips[index].from = from;
-    this.upcomingTrips[index].destination = destination;
-    this.upcomingTrips[index].price = price;
+    //const index = driver.upcomingTrips.findIndex((item) => item.id === trip.id);
+    //this.upcomingTrips[index].tripDate = tripDate;
+    trip.tripDate = tripDate;
+    await this.update(tripId, trip);
+    //await driverService.update(driverId, driver);
   }
 
   async editTripFrom(tripId, tripDate, from, destination, price) {

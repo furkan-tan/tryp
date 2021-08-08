@@ -1,13 +1,26 @@
 const mongoose = require("mongoose");
 require("mongoose-type-email");
-require("mongoose-type-phone");
+const mongooseTypePhone = require("mongoose-type-phone");
 
 const DriverSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, minlength: 2 },
     surname: { type: String, required: true, minlength: 2 },
     email: { type: mongoose.SchemaTypes.Email, required: true, unique: true },
-    phone: { type: mongoose.SchemaTypes.Phone, required: true, unique: true },
+    phone: {
+      type: mongoose.SchemaTypes.Phone,
+      required: "Phone number should be set correctly",
+      allowBlank: false,
+      allowedNumberTypes: [
+        mongooseTypePhone.PhoneNumberType.MOBILE,
+        mongooseTypePhone.PhoneNumberType.FIXED_LINE_OR_MOBILE,
+      ],
+      phoneNumberFormat: mongooseTypePhone.PhoneNumberFormat.INTERNATIONAL, // can be omitted to keep raw input
+      defaultRegion: "US",
+      parseOnGet: false,
+      required: true,
+      unique: true,
+    },
     profilePicture: {
       type: String,
       default:

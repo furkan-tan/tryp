@@ -35,6 +35,8 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
+    "faker": "^5.5.3",
+    "fakerator": "^0.3.3",
     "jest": "^27.0.6",
     "supertest": "^6.1.4"
   }
