@@ -31,13 +31,14 @@
     "mongoose": "^5.13.4",
     "mongoose-autopopulate": "^0.14.0",
     "mongoose-type-email": "^1.1.2",
-    "mongoose-type-phone": "^1.0.1",
-    "pug": "^3.0.2"
+    "mongoose-type-phone": "^1.0.1"
   },
   "devDependencies": {
     "faker": "^5.5.3",
     "fakerator": "^0.3.3",
     "jest": "^27.0.6",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
     "supertest": "^6.1.4"
   }
 }
