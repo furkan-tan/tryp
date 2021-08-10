@@ -51,7 +51,7 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3000/drivers/610d79a2d04a1f424447458c/vehicles HTTP/1.1
+POST http://localhost:3000/drivers/611257066dfcf269f047716f/vehicles HTTP/1.1
 Content-Type: application/json
 
 {
@@ -68,7 +68,7 @@ DELETE http://localhost:3000/drivers/6109247bb24d7a2c98c95f76/vehicles/610be381e
 
 ###
 
-POST http://localhost:3000/drivers/610d79a2d04a1f424447458c/trips?vehicleId=610ffc1d8bb6f952e454c031 HTTP/1.1
+POST http://localhost:3000/drivers/611257066dfcf269f047716f/trips?vehicleId=611257196dfcf269f0477172 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -81,9 +81,14 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3000/drivers/610d79a2d04a1f424447458c HTTP/1.1
+PATCH http://localhost:3000/drivers/611257066dfcf269f047716f/trips/6112572d6dfcf269f0477172 HTTP/1.1
 Content-Type: application/json
 
 {
-  "surname":"Pan"
+  "tripDate":"2021-10-28T16:00:00Z"
 }
+
+
+###
+
+DELETE  http://localhost:3000/drivers/611257066dfcf269f047716f/trips/6112572d6dfcf269f0477179 HTTP/1.1

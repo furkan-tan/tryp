@@ -59,6 +59,15 @@ router.post("/:driverId/trips", async (req, res) => {
   res.send(trip);
 });
 
+router.delete("/:driverId/trips/:tripId", async (req, res) => {
+  const { driverId } = req.params;
+  const { tripId } = req.params;
+
+  await tripService.cancelTrip(driverId, tripId);
+
+  res.send("Trip Cancelled");
+});
+
 router.patch("/:driverId/trips/:tripId", async (req, res) => {
   const { driverId, tripId } = req.params;
   const { tripDate, from, destination, price, availableSeat } = req.body;
@@ -96,10 +105,6 @@ router.delete("/:driverId/vehicles/:vehicleId", async (req, res) => {
   await vehicleService.removeVehicle(driverId, vehicleId);
 
   res.send("Ok");
-});
-
-router.patch("/:driverId/trips/:tripId", async (req, res) => {
-  const { driverId, tripId } = req.params;
 });
 
 /*

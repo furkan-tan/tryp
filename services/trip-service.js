@@ -46,28 +46,17 @@ class TripService extends BaseService {
     return trip;
   }
 
-  async editTripDate(driverId, tripId, tripDate) {
+  async cancelTrip(driverId, tripId) {
     const driver = await driverService.find(driverId);
     const trip = await this.find(tripId);
-    //const index = driver.upcomingTrips.findIndex((item) => item.id === trip.id);
-    //this.upcomingTrips[index].tripDate = tripDate;
-    trip.tripDate = tripDate;
+    trip.status = "CANCELLED";
+
     await this.update(tripId, trip);
-    //await driverService.update(driverId, driver);
-  }
 
-  async editTripFrom(tripId, tripDate, from, destination, price) {
-    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
-    this.upcomingTrips[index].tripDate = tripDate;
-    this.upcomingTrips[index].from = from;
-    this.upcomingTrips[index].destination = destination;
-    this.upcomingTrips[index].price = price;
-  }
+    //const index = driver.upcomingTrips.findIndex((item) => item.id === tripId);
 
-  async cancelTrip(trip) {
-    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
-    this.trips[index].status = TripStatus.CANCELLED;
-    //this.upcomingTrips.filter(item=>item!==trip);
+    //driver.upcomingTrips.splice(index, 1);
+    //await driver.save();
   }
 }
 module.exports = new TripService(Trip);
