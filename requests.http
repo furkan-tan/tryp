@@ -92,3 +92,17 @@ Content-Type: application/json
 ###
 
 DELETE  http://localhost:3000/drivers/611257066dfcf269f047716f/trips/6112572d6dfcf269f0477179 HTTP/1.1
+
+###
+
+
+PATCH http://localhost:3000/passengers/610706b2b1bbe03a1835e4a1 HTTP/1.1
+content-type: application/json
+
+{
+  "name":"Michael",
+  "surname":"Fun",
+  "email":"mf@gmail.com",
+  "phone":"+1 (407)-733 0530",
+  "profilePicture":"somepath"
+}

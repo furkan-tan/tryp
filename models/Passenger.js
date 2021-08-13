@@ -48,33 +48,7 @@ PassengerSchema.plugin(require("mongoose-autopopulate"));
 module.exports = mongoose.model("Passenger", PassengerSchema);
 /*
 class Passenger {
-  constructor(
-    id = uuid.v4(),
-    name,
-    surname,
-    email,
-    phone,
-    profilePicture = "http://adyrefrigeration.ca/sites/default/files/styles/headshot/adaptive-image/public/nobody.jpg",
-    ratingHistory = [],
-    rating = 0,
-    currentTrip = null,
-    upcomingTrips = [],
-    tripHistory = [],
-    cards = []
-  ) {
-    this.id = id;
-    this.name = name;
-    this.surname = surname;
-    this.email = email;
-    this.phone = phone;
-    this.profilePicture = profilePicture;
-    this.ratingHistory = ratingHistory;
-    this.rating = rating;
-    this.currentTrip = currentTrip;
-    this.upcomingTrips = upcomingTrips;
-    this.tripHistory = tripHistory;
-    this.cards = cards;
-  }
+  
 
   updateProfilePicture(path) {
     this.profilePicture = path;

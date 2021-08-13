@@ -28,9 +28,19 @@ router.get("/:passengerId", async (req, res) => {
 });
 
 router.patch("/:passengerId", async (req, res) => {
-  const { name } = req.body;
+  const { passengerId } = req.params;
+  const { name, surname, email, phone, profilePicture } = req.body;
+  const passenger = {};
 
-  await passengerService.update(req.params.passengerId, { name });
+  if (name) passenger.name = name;
+  if (surname) passenger.surname = surname;
+  if (email) passenger.email = email;
+  if (phone) passenger.phone = phone;
+  if (profilePicture) passenger.profilePicture = profilePicture;
+
+  await passengerService.update(passengerId, passenger);
+
+  res.send("Updated");
 });
 
 module.exports = router;

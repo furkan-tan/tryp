@@ -65,38 +65,6 @@ DriverSchema.plugin(require("mongoose-autopopulate"));
 module.exports = mongoose.model("Driver", DriverSchema);
 
 /*
-  createTrip(vehicle, tripDate, from, destination, price) {
-    let trip = new Trip(
-      undefined,
-      this,
-      vehicle,
-      [],
-      undefined,
-      tripDate,
-      from,
-      destination,
-      price,
-      undefined
-    );
-    this.upcomingTrips.push(trip);
-    if (this.upcomingTrips.length > 1) {
-      this.upcomingTrips.sort((a.tripDate, b.tripDate), b - a);
-    }
-  }
-
-  editTrip(trip, tripDate, from, destination, price) {
-    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
-    this.upcomingTrips[index].tripDate = tripDate;
-    this.upcomingTrips[index].from = from;
-    this.upcomingTrips[index].destination = destination;
-    this.upcomingTrips[index].price = price;
-  }
-
-  cancelTrip(trip) {
-    const index = this.upcomingTrips.findIndex((item) => item.id === trip.id);
-    this.trips[index].status = TripStatus.CANCELLED;
-    //this.upcomingTrips.filter(item=>item!==trip);
-  }
 
   ratePassenger(trip, passenger, rate) {
     if (
@@ -134,37 +102,6 @@ module.exports = mongoose.model("Driver", DriverSchema);
     this.currentTrip = null;
   }
 
-  static create({
-    id,
-    name,
-    surname,
-    email,
-    phone,
-    profilePicture,
-    drivingLicense,
-    ratingHistory,
-    rating,
-    currentTrip,
-    upcomingTrips,
-    tripHistory,
-    vehicles,
-  }) {
-    return new Driver(
-      id,
-      name,
-      surname,
-      email,
-      phone,
-      profilePicture,
-      drivingLicense,
-      ratingHistory,
-      rating,
-      currentTrip,
-      upcomingTrips,
-      tripHistory,
-      vehicles
-    );
-  }
 }
 
 module.exports = Driver;
